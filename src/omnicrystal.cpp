@@ -57,11 +57,7 @@ Omnicrystal& Omnicrystal::begin(){
     return *this;
 }
 
-Omnicrystal& Omnicrystal::write(const char *text){
-    uint16_t i = 0;
-    while(text[i] != '\0'){
-        send((uint8_t)text[i], 1);
-        i++;
-    }
-    return *this;
+size_t Omnicrystal::write(uint8_t data){
+    send(data, 1);
+    return 1;
 }

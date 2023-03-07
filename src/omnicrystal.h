@@ -3,13 +3,14 @@
 #define OMNICRYSTAL_H
 
 #include <Arduino.h>
+#include <Print.h>
 #include <stdint.h>
 #include <interface/defultmodules.h>
 #include <interface/lcdinterface.h>
 
 enum BusType {Bus4Bits, Bus8Bits};
 
-class Omnicrystal{
+class Omnicrystal : public Print{
     private:
         LCDInterface &_bridge;
         const BusType _bus; // tipo de comunicação 4 ou 8 bits
@@ -23,7 +24,7 @@ class Omnicrystal{
         Omnicrystal(LCDInterface &bridge, const BusType bus, uint8_t line, uint8_t col) : _bridge{bridge}, _bus{bus},
             _line{line}, _col{col}{}
         Omnicrystal& begin();
-        Omnicrystal& write(const char *text);
+        virtual size_t write(uint8_t);
 };
 
 #endif
