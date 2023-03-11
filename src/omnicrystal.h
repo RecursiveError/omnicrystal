@@ -10,6 +10,17 @@
 
 enum BusType {Bus4Bits, Bus8Bits};
 
+//comandos do LCD
+enum LCDCommand {
+    LCDClear = 0x01,
+    LCDReset = 0x02,
+    LCDShiftCursotLeft = 0x10,
+    LCDShiftCursotRight = 0x14,
+    LCDShiftDisplayLeft = 0x18,
+    LCDShiftDisplayRight = 0x1C,
+};
+
+
 class Omnicrystal : public Print{
     private:
         LCDInterface &_bridge;
@@ -23,6 +34,18 @@ class Omnicrystal : public Print{
     public:
         Omnicrystal(LCDInterface &bridge, const BusType bus, uint8_t line, uint8_t col) : _bridge{bridge}, _bus{bus},
             _line{line}, _col{col}{}
+
+        //envia o codigo dos comandos
+        Omnicrystal& command(LCDCommand);
+        //funçoes para enviar cada um dos comandos
+        Omnicrystal& clear();
+        Omnicrystal& reset();
+        Omnicrystal& move_cursor_left();
+        Omnicrystal& move_cursor_right();
+        Omnicrystal& move_display_left();
+        Omnicrystal& move_display_right();
+
+
         Omnicrystal& begin();
         virtual size_t write(uint8_t);
 };

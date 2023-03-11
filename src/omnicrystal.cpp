@@ -61,3 +61,44 @@ size_t Omnicrystal::write(uint8_t data){
     send(data, 1);
     return 1;
 }
+
+/* ----------------- COMANDOS DO DISPLAY ---------------------*/
+//envia comandos para o display
+inline Omnicrystal& Omnicrystal::command(LCDCommand command){
+    send(command, 0); //0 indica RS em low, significa que vamos envar um comando
+    return *this; //apenas para encadeamento de metodos
+}
+
+Omnicrystal& Omnicrystal::clear(){
+    command(LCDClear);
+    delay(2); //clear e reset demoram 1.52ms para executar
+    return *this;
+}
+
+Omnicrystal& Omnicrystal::reset(){
+    command(LCDReset);
+    delay(2); //clear e reset demoram 1.52ms para executar
+    return *this;
+}
+
+inline Omnicrystal& Omnicrystal::move_cursor_left(){
+    command(LCDShiftCursotLeft);
+    return *this;
+}
+
+inline Omnicrystal& Omnicrystal::move_cursor_right(){
+    command(LCDShiftCursotRight);
+    return *this;
+}
+
+inline Omnicrystal& Omnicrystal::move_display_left(){
+    command(LCDShiftDisplayLeft);
+    return *this;
+}
+
+inline Omnicrystal& Omnicrystal::move_display_right(){
+    command(LCDShiftCursotRight);
+    return *this;
+}
+
+/* ----------------- FIM DOS COMANDOS DO DISPLAY ---------------------*/
