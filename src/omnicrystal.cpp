@@ -44,16 +44,14 @@ Omnicrystal& Omnicrystal::begin(){
     //configura o modo de comunicação corretamente
     if(_bus == Bus4Bits){
         send8Bits(0x20, 0);
-        send(0x28, 0);
-    }else{
-        send(0x38, 0);
     }
-    send(0x01, 0); //limpa o LCD
-    delay(2);
-    send(0x02,0); //Reinicia variaveis internas
-    delay(2);
-    send(0x06,0); //liga modo incremental do display
-    send(0x0F,0); //LCD on, cursor on, cursor piscando
+
+    //envias as configuraçoes padroes do LCD
+    send(function_set, 0);
+    clear();
+    reset();
+    send(entry_mode, 0); //liga modo incremental do display
+    send(display_control, 0); //LCD on, cursor on, cursor piscando
     return *this;
 }
 
@@ -102,3 +100,85 @@ inline Omnicrystal& Omnicrystal::move_display_right(){
 }
 
 /* ----------------- FIM DOS COMANDOS DO DISPLAY ---------------------*/
+
+/* ------------------ CONFIGURAÇÃO DO DISPLAY ------------------------*/
+
+/*
+essas funçoes recebem a posição em bit da flag na enum de cada configuração
+liga os bits de acordo com a configuração, "on" coloca o bit em 1, "off" coloca o bit wm 0
+*/
+
+//configura o autoshift
+Omnicrystal& Omnicrystal::shift_on(){
+    entry_mode |= LCDShiftMode;
+    send(entry_mode, 0);
+    return *this;
+}
+
+Omnicrystal& Omnicrystal::shift_off(){
+    entry_mode &= ~LCDShiftMode;
+    send(entry_mode, 0);
+    return *this;
+}
+
+//diz se ele aumenta ou diminue a posição apos cada letra
+Omnicrystal& Omnicrystal::increment(){
+    entry_mode |= LCDDirection;
+    send(entry_mode,0);
+    return *this;
+}
+
+Omnicrystal& Omnicrystal::decrement(){
+    entry_mode &= ~LCDDirection;
+    send(entry_mode,0);
+    return *this;
+}
+
+//liga e desliga se o cursor piscando
+Omnicrystal& Omnicrystal::cursor_blink_on(){
+    display_control |= LCDBlink;
+    send(display_control,0);
+    return *this;
+}
+
+Omnicrystal& Omnicrystal::cursor_blink_off(){
+    display_control &= ~LCDBlink;
+    send(display_control,0);
+    return *this;
+}
+
+//liga e desliga o cursor
+Omnicrystal& Omnicrystal::cursor_on(){
+    display_control |= LCDCursor;
+    send(display_control,0);
+    return *this;
+}
+
+Omnicrystal& Omnicrystal::cursor_off(){
+    display_control &= ~LCDCursor;
+    send(display_control,0);
+    return *this;
+}
+
+//liga e desliga a exibição
+Omnicrystal& Omnicrystal::display_on(){
+    display_control |= LCDDisplay;
+    send(display_control,0);
+    return *this;
+}
+
+Omnicrystal& Omnicrystal::display_off(){
+    display_control &= ~LCDDisplay;
+    send(display_control,0);
+    return *this;
+}
+/*------------------- FIM CONFIGURAÇÃO DO DISPLAY ---------------------*/
+
+Omnicrystal& Omnicrystal::set_cursor(uint8_t line, uint8_t col){
+    if(line <= _line){
+        if(col <= _col){
+            send(addrs[line]+col, 0);
+        }
+    }
+    return *this;
+}
