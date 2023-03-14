@@ -175,10 +175,19 @@ Omnicrystal& Omnicrystal::display_off(){
 /*------------------- FIM CONFIGURAÇÃO DO DISPLAY ---------------------*/
 
 Omnicrystal& Omnicrystal::set_cursor(uint8_t line, uint8_t col){
-    if(line <= _line){
-        if(col <= _col){
+    if(line < _line){
+        if(col < _col){
             send(addrs[line]+col, 0);
         }
+    }
+    return *this;
+}
+
+Omnicrystal& Omnicrystal::create_char(uint8_t c[8], uint8_t pos){
+    pos &= 0b00000111;
+    send(0x40 | (pos<<3), 0);
+    for(size_t i = 0; i < 8; i++){
+        send(c[i], 1);
     }
     return *this;
 }

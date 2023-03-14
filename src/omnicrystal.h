@@ -49,7 +49,7 @@ enum LCDCharSize {
 
 class Omnicrystal : public Print{
     private:
-        static constexpr uint8_t addrs[4] = {0x80, 0xC0, 0x80+20, 0xC0+20}; //endereços para LCD 16x2 e 20x4
+        const uint8_t addrs[4] = {0x80, 0xC0, 0x80+20, 0xC0+20}; //endereços para LCD 16x2 e 20x4
         LCDInterface &_bridge;
         const BusType _bus; // tipo de comunicação 4 ou 8 bits
         const uint8_t _line; // quantidade de linhas no display
@@ -96,6 +96,8 @@ class Omnicrystal : public Print{
         Omnicrystal& display_on();
         Omnicrystal& display_off();
         Omnicrystal& set_cursor(uint8_t line, uint8_t col);
+
+        Omnicrystal& create_char(uint8_t c[8], uint8_t pos);
 
         Omnicrystal& begin();
         virtual size_t write(uint8_t);
