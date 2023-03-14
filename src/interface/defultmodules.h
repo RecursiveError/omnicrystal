@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include "lcdinterface.h"
 #include "Arduino.h"
+#include "Wire.h"
 
 class LCDParallel : public LCDInterface{
     private:
@@ -14,13 +15,7 @@ class LCDParallel : public LCDInterface{
         const uint8_t pins_offset;
 
         //inicia os pinos usados no LCD
-        void init_pins(){
-            pinMode(EN_pin, OUTPUT);
-            pinMode(RS_pin, OUTPUT);
-            for(size_t i = pins_offset; i < 8; i++){
-                pinMode(com_pins[i], OUTPUT);
-            }
-        }
+        void init_pins();
     public:
         LCDParallel(uint8_t RS, uint8_t EN, uint8_t D4,uint8_t D5,uint8_t D6, uint8_t D7):
         RS_pin{RS},
@@ -39,13 +34,18 @@ class LCDParallel : public LCDInterface{
         {
             init_pins();
         }
-        void send(uint8_t config, uint8_t data){
-            digitalWrite(RS_pin, config & 0x01);
-            for(size_t i = pins_offset; i < 8; i++){
-                digitalWrite(com_pins[i], data & (1 << i));
-            }
-            digitalWrite(EN_pin, config & 0x04);
-}
+        void send(uint8_t config, uint8_t data);
+};
+
+//Funciona apenas no mode de 4BITS!!!
+class LCDPCF8754 : public LCDInterface{
+    private:
+        const uint8_t _addr; //endereço I2C
+    public:
+        LCDPCF8754(const uint8_t addr): _addr{addr}{
+            Wire.begin(); //Inicia o I2C do hardware
+        }
+        void send(uint8_t config, uint8_t data);
 };
 
 #endif
