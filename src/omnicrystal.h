@@ -79,25 +79,25 @@ class Omnicrystal : public Print{
         //funçoes para enviar cada um dos comandos
         Omnicrystal& clear();
         Omnicrystal& reset();
-        Omnicrystal& move_cursor_left();
-        Omnicrystal& move_cursor_right();
-        Omnicrystal& move_display_left();
-        Omnicrystal& move_display_right();
+        Omnicrystal& moveCursorLeft();
+        Omnicrystal& moveCursorRight();
+        Omnicrystal& moveDisplayLeft();
+        Omnicrystal& moveDisplayRight();
 
         //funçoes para enviar configuração
-        Omnicrystal& shift_on();
-        Omnicrystal& shift_off();
+        Omnicrystal& shiftOn();
+        Omnicrystal& shiftOff();
         Omnicrystal& increment();
         Omnicrystal& decrement();
-        Omnicrystal& cursor_blink_on();
-        Omnicrystal& cursor_blink_off();
-        Omnicrystal& cursor_on();
-        Omnicrystal& cursor_off();
-        Omnicrystal& display_on();
-        Omnicrystal& display_off();
-        Omnicrystal& set_cursor(uint8_t line, uint8_t col);
+        Omnicrystal& cursorBlinkOn();
+        Omnicrystal& cursorBlinkOff();
+        Omnicrystal& cursorOn();
+        Omnicrystal& cursorOff();
+        Omnicrystal& displayOn();
+        Omnicrystal& displayOff();
+        Omnicrystal& setCursor(uint8_t line, uint8_t col);
 
-        Omnicrystal& create_char(uint8_t c[8], uint8_t pos);
+        Omnicrystal& createChar(uint8_t c[8], uint8_t pos);
 
         Omnicrystal& begin();
         virtual size_t write(uint8_t);

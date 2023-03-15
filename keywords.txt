@@ -1,0 +1,64 @@
+
+# Datatypes (KEYWORD1)
+###############################################################
+
+Omnicrystal KEYWORD1
+LCDPCF8754  KEYWORD1
+LCDParallel KEYWORD1
+
+BusType           KEYWORD1
+LCDCommand        KEYWORD1
+LCDEntryMode      KEYWORD1
+LCDDisplayContro  KEYWORD1
+LCDFunctionSet    KEYWORD1
+LCDCharSize       KEYWORD1
+
+
+# Methods and Functions (KEYWORD2)
+###############################################################
+
+command   KEYWORD2
+clear   KEYWORD2
+reset   KEYWORD2
+moveCursorLeft KEYWORD2
+moveCursorRight KEYWORD2
+moveDisplayLeft KEYWORD2
+moveDisplayRight KEYWORD2
+shiftOn KEYWORD2
+shiftOff KEYWORD2
+increment KEYWORD2
+decrement KEYWORD2
+cursorBlinkOn KEYWORD2
+cursorBlinkOff KEYWORD2
+cursorOn KEYWORD2
+cursorOff KEYWORD2
+displayOn KEYWORD2
+displayOff KEYWORD2
+setCursor KEYWORD2
+createChar KEYWORD2
+begin KEYWORD2
+write KEYWORD2
+
+# Constants (LITERAL1)
+########################################################
+
+Bus4Bits LITERAL1
+Bus8Bits LITERAL1
+LCDClear LITERAL1
+LCDReset LITERAL1
+
+LCDShiftCursotLeft LITERAL1
+LCDShiftCursotRight LITERAL1
+LCDShiftDisplayLeft LITERAL1
+LCDShiftDisplayRight LITERAL1
+
+LCDShiftMode LITERAL1
+LCDDirection LITERAL1
+LCDBlink LITERAL1
+LCDCursor LITERAL1
+LCDDisplay LITERAL1
+LCDChar LITERAL1
+LCDLines LITERAL1
+LCDBits LITERAL1
+Char5x8 LITERAL1
+Char5x10 LITERAL1
