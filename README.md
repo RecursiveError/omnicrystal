@@ -1,5 +1,5 @@
 # omnicrystal
-English version (TODO)
+[English version](https://github.com/RecursiveError/omnicrystal/blob/main/README_EN.md)
 
 Biblioteca modular para LCD alfanuméricos compatíveis com HITACHI HD44780 feita com CoreArduino
 
