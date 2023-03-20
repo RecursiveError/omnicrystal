@@ -5,7 +5,8 @@
 #include <stdint.h>
 #include "lcdinterface.h"
 #include "Arduino.h"
-#include "Wire.h"
+#include "pins_arduino.h"
+
 
 class LCDParallel : public LCDInterface{
     private:
@@ -37,6 +38,9 @@ class LCDParallel : public LCDInterface{
         void send(uint8_t config, uint8_t data);
 };
 
+#if defined(PIN_WIRE_SDA) && defined(PIN_WIRE_SDA)
+
+#include "Wire.h"
 //Funciona apenas no mode de 4BITS!!!
 class LCDPCF8754 : public LCDInterface{
     private:
@@ -47,5 +51,5 @@ class LCDPCF8754 : public LCDInterface{
         }
         void send(uint8_t config, uint8_t data);
 };
-
+#endif
 #endif
