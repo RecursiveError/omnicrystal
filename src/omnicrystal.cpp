@@ -56,6 +56,9 @@ Omnicrystal& Omnicrystal::begin(){
 }
 
 size_t Omnicrystal::write(uint8_t data){
+    if((data == '\n') || (data == '\r')){
+        return 0;
+    }
     send(data, 1);
     return 1;
 }
