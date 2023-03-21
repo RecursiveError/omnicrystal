@@ -82,3 +82,45 @@ void loop() {
 }
 
 ```
+
+#### Functions
+
+`begin` Starts the display
+
+`command` Send command from display command table
+
+`clear` Clears the display
+
+`reset` resets the display's internal variables
+
+`moveCursorLeft` Moves the cursor to the left
+
+`moveCursorRight` Moves the cursor to the right
+
+`moveDisplayLeft` Moves the display left
+
+`moveDisplayRight` Moves the display right
+
+`shiftOn` Enables autoscroll
+
+`shiftOff` Disables autoscroll
+
+`increment` Autoscroll increments the position
+
+`decrement` Autoscroll decrements the position
+
+`cursorBlinkOn` Enables blinking cursor
+
+`cursorBlinkOff` Turns off cursor blinking
+
+`cursorOn` Activates the cursor
+
+`cursorOff` Turns off the cursor
+
+`displayOn` Turns on the display
+
+`displayOff` Turn off the display
+
+`setCursor(row, column)` Moves the cursor (count starts from 0)
+
+`createChar(char_array, slot)` Creates a custom character (takes an array of length 8 and position 0-7)
