@@ -1,6 +1,6 @@
 #include <omnicrystal.h>
 
-//selecione a interface que deseja usar
+//select the interface you want to use
 /*
 #define RS 6
 #define EN 7
