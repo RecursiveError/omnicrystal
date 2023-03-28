@@ -22,15 +22,15 @@ https://github.com/felias-fogg/SoftI2CMaster
 #include <SoftI2CMaster.h>
 
 //Implements LCDinterface
-class LCDPCF8754_SOFT : public LCDInterface{
+class LCDPCF8574_SOFT : public LCDInterface{
   private:
     const uint8_t _addr;
   public:
-    LCDPCF8754_SOFT(const uint8_t addr) : _addr{addr}
+    LCDPCF8574_SOFT(const uint8_t addr) : _addr{addr}
     {i2c_init();}
     void send(uint8_t config, uint8_t data){
       /*
-      The first 3 Low Bits of PCF8754 correspond respectively
+      The first 3 Low Bits of PCF8574 correspond respectively
       RS - R/W - EN
 
       0x08 is the backlight
@@ -45,7 +45,7 @@ class LCDPCF8754_SOFT : public LCDInterface{
 };
 
 //that's all you need to create a custom interface, now just use it.
-LCDPCF8754_SOFT interface(0x27);
+LCDPCF8574_SOFT interface(0x27);
 Omnicrystal lcd(interface, Bus4Bits, 2, 16);
 
 void setup() {

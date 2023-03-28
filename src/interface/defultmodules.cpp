@@ -18,7 +18,7 @@ void LCDParallel::send(uint8_t config, uint8_t data){
 
 
 #if defined(PIN_WIRE_SDA) && defined(PIN_WIRE_SDA)
-void LCDPCF8754::send(uint8_t config, uint8_t data){
+void LCDPCF8574::send(uint8_t config, uint8_t data){
     uint8_t package = (config & 0b00000111) | (data & 0xF0) | 0x08; //organiza os bits corretamente e envia o pacote
     Wire.beginTransmission(_addr);
     Wire.write(package);

@@ -51,7 +51,7 @@ class LCDPCF8754_SOFT : public LCDInterface{
   private:
     const uint8_t _addr;
   public:
-    LCDPCF8754_SOFT(const uint8_t addr) : _addr{addr}
+    LCDPCF8574_SOFT(const uint8_t addr) : _addr{addr}
     {i2c_init();}
     void send(uint8_t config, uint8_t data){
       /*

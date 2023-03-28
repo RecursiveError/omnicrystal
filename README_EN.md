@@ -2,7 +2,7 @@
 
 Modular library for alphanumeric LCD compatible with HITACHI HD44780 made with CoreArduino
 
-This Library allows the user to choose and create the communication interface with the LCD display, This Library comes with two interfaces by default: parallel and PCF8754(Wire)
+This Library allows the user to choose and create the communication interface with the LCD display, This Library comes with two interfaces by default: parallel and PCF8574(Wire)
 
 (PCF6754 IS NOT IMPLEMENTED FOR PLATFORM WITHOUT I2C SUPPORT, use softI2C example on these platforms)
 
@@ -19,7 +19,7 @@ The "send" function receives two uint8_t parameters, "data" and "config", in whi
 the state of each bit represents the state of the port: 1 == HIGH | 0 == LOW
 
 connect each bit to its respective port and that's it you already have a functional interface
-(to work with PCF8754 you can copy this line ```uint8_t package = (config & 0b00000111) | (data & 0xF0) | 0x08; ``` and send it through I2C library of your choice)
+(to work with PCF8574 you can copy this line ```uint8_t package = (config & 0b00000111) | (data & 0xF0) | 0x08; ``` and send it through I2C library of your choice)
 
 #### example soft_i2c
 ```c++
@@ -47,15 +47,15 @@ https://github.com/felias-fogg/SoftI2CMaster
 #include <SoftI2CMaster.h>
 
 //Implements LCDinterface
-class LCDPCF8754_SOFT : public LCDInterface{
+class LCDPCF8574_SOFT : public LCDInterface{
   private:
     const uint8_t _addr;
   public:
-    LCDPCF8754_SOFT(const uint8_t addr) : _addr{addr}
+    LCDPCF8574_SOFT(const uint8_t addr) : _addr{addr}
     {i2c_init();}
     void send(uint8_t config, uint8_t data){
       /*
-      The first 3 Low Bits of PCF8754 correspond respectively
+      The first 3 Low Bits of PCF8574 correspond respectively
       RS - R/W - EN
 
       0x08 is the backlight
@@ -70,7 +70,7 @@ class LCDPCF8754_SOFT : public LCDInterface{
 };
 
 //that's all you need to create a custom interface, now just use it.
-LCDPCF8754_SOFT interface(0x27);
+LCDPCF8574_SOFT interface(0x27);
 Omnicrystal lcd(interface, Bus4Bits, 2, 16);
 
 void setup() {

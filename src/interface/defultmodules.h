@@ -42,11 +42,11 @@ class LCDParallel : public LCDInterface{
 
 #include "Wire.h"
 //Funciona apenas no mode de 4BITS!!!
-class LCDPCF8754 : public LCDInterface{
+class LCDPCF8574 : public LCDInterface{
     private:
         const uint8_t _addr; //endereço I2C
     public:
-        LCDPCF8754(const uint8_t addr): _addr{addr}{
+        LCDPCF8574(const uint8_t addr): _addr{addr}{
             Wire.begin(); //Inicia o I2C do hardware
         }
         void send(uint8_t config, uint8_t data);
