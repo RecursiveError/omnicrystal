@@ -11,7 +11,7 @@
 
 LCDParallel LcdInter(RS,EN,D4,D5,D6,D7);
 */
-LCDPCF8754 LcdInter(0x27);
+LCDPCF8574 LcdInter(0x27);
 Omnicrystal lcd(LcdInter, Bus4Bits, 2, 16);
 
 void setup() {
