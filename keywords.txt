@@ -38,6 +38,8 @@ setCursor KEYWORD2
 createChar KEYWORD2
 begin KEYWORD2
 write KEYWORD2
+echo KEYWORD2
+selectLcd KEYWORD2
 
 # Constants (LITERAL1)
 ########################################################

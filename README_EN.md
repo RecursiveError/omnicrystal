@@ -124,3 +124,7 @@ void loop() {
 `setCursor(row, column)` Moves the cursor (count starts from 0)
 
 `createChar(char_array, slot)` Creates a custom character (takes an array of length 8 and position 0-7)
+
+`echo` Selected all LCDs (enables all ENs)
+
+`selectLcd(LCD)` Selects an lcd, 0 = EN1 (Default) | 1 = EN2
