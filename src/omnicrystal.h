@@ -59,6 +59,7 @@ class Omnicrystal : public Print{
         uint8_t entry_mode{0x06}; // shift Off, escrita da esquerda pra direita
         uint8_t display_control{0x0C}; //display ligado, cursor desligado, cursor piscando desligado
         uint8_t function_set{0}; // configurado no construtor
+        uint8_t enable_set{0b1100};
 
         void send4Bits(uint8_t data, uint8_t RS_state);
         void send8Bits(uint8_t data, uint8_t RS_state);
@@ -100,6 +101,9 @@ class Omnicrystal : public Print{
         Omnicrystal& createChar(uint8_t c[8], uint8_t pos);
 
         Omnicrystal& begin();
+        Omnicrystal& echo();
+        Omnicrystal& selectLcd(uint8_t enable);
+
         virtual size_t write(uint8_t);
 };
 

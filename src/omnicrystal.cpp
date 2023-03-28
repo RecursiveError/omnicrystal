@@ -2,7 +2,7 @@
 
 void Omnicrystal::send8Bits(uint8_t data, uint8_t RS_state){
     _bridge.send(RS_state, data);
-    _bridge.send(RS_state | 0b00000100, data);
+    _bridge.send(RS_state | enable_set, data);
     delayMicroseconds(1);
     _bridge.send(RS_state, data);
 }
@@ -52,6 +52,7 @@ Omnicrystal& Omnicrystal::begin(){
     reset();
     send(entry_mode, 0); //liga modo incremental do display
     send(display_control, 0); //LCD on, cursor on, cursor piscando
+    selectLcd(0);
     return *this;
 }
 
@@ -191,6 +192,19 @@ Omnicrystal& Omnicrystal::createChar(uint8_t c[8], uint8_t pos){
     send(0x40 | (pos<<3), 0);
     for(size_t i = 0; i < 8; i++){
         send(c[i], 1);
+    }
+    return *this;
+}
+
+
+Omnicrystal& Omnicrystal::echo(){
+    enable_set = 0b1100;
+    return *this;
+}
+
+Omnicrystal& Omnicrystal::selectLcd(uint8_t enable){
+    if(enable < 2){
+        enable_set = 0b100<<enable;
     }
     return *this;
 }
